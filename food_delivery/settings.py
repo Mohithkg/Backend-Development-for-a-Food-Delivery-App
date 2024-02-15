@@ -80,8 +80,8 @@ DATABASES = {
         'NAME': 'food_delivery_backend',
         'USER': 'postgres',
         'PASSWORD': 'Mohith@56',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'HOST': '0.0.0.0',
+        'PORT': '10000',
     }
 }
 
