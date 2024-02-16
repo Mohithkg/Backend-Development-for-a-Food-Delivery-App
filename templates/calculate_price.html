@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate Price</title>
+</head>
+<body>
+    <h1>Calculate Price</h1>
+
+    <form id="priceCalculationForm">
+        {% csrf_token %}
+        <label for="zone">Zone:</label>
+        <input type="text" id="zone" name="zone"><br>
+
+        <label for="organization_id">Organization ID:</label>
+        <input type="text" id="organization_id" name="organization_id"><br>
+
+        <label for="total_distance">Total Distance:</label>
+        <input type="number" id="total_distance" name="total_distance" min="0" required><br>
+
+        <label for="item_type">Item Type:</label>
+        <select id="item_type" name="item_type" onchange="setKmPrice()">
+            <option value="perishable">Perishable</option>
+            <option value="non_perishable">Non-Perishable</option>
+        </select><br>
+
+        <label for="base_distance_in_km">Base Distance (km):</label>
+        <input type="number" id="base_distance_in_km" name="base_distance_in_km" min="0" required><br>
+
+        <label for="km_price">Price per km (EUR):</label>
+        <span id="km_price"></span><br>
+
+        <label for="fix_price">Fixed Price (EUR):</label>
+        <input type="number" id="fix_price" name="fix_price" min="0" required><br>
+
+        <button type="button" onclick="calculatePrice()">Calculate</button>
+    </form>
+
+    <p id="totalPrice"></p>
+
+    <script>
+        function setKmPrice() {
+            var itemType = document.getElementById('item_type').value;
+            var kmPriceField = document.getElementById('km_price');
+
+            // Determine per km price based on item type
+            var kmPrice;
+            if (itemType === 'perishable') {
+                kmPrice = 1.5;  // Perishable item price per km
+            } else {
+                kmPrice = 1.0;  // Non-perishable item price per km
+            }
+
+            kmPriceField.innerText = kmPrice.toFixed(2) + ' EUR/km';  // Display km_price
+        }
+
+        function calculatePrice() {
+            var totalDistance = parseFloat(document.getElementById('total_distance').value);
+            var baseDistance = parseFloat(document.getElementById('base_distance_in_km').value);
+            var fixPrice = parseFloat(document.getElementById('fix_price').value);
+            var itemType = document.getElementById('item_type').value;
+            var kmPrice;
+
+            // Determine per km price based on item type
+            if (itemType === 'perishable') {
+                kmPrice = 1.5;  // Perishable item price per km
+            } else {
+                kmPrice = 1.0;  // Non-perishable item price per km
+            }
+
+            // Calculate total price
+            var totalPrice = fixPrice;
+            if (totalDistance > baseDistance) {
+                var additionalDistance = totalDistance - baseDistance;
+                totalPrice += additionalDistance * kmPrice;
+            }
+
+            document.getElementById('totalPrice').innerText = 'Total Price: ' + totalPrice.toFixed(2) + ' EUR';
+        }
+    </script>
+</body>
+</html>
