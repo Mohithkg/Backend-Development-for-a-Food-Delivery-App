@@ -7,43 +7,43 @@
 </head>
 <body>
     <h1>Calculate Price</h1>
+ <form id="priceCalculationForm">
+    {% csrf_token %}
+    <label for="zone">Zone:</label>
+    <select id="zone" name="zone">
+        <option value="north">North</option>
+        <option value="south">South</option>
+        <option value="east">East</option>
+        <option value="west">West</option>
+        <option value="central">Central</option>
+    </select><br>
 
-    <form id="priceCalculationForm">
-        {% csrf_token %}
-         <label for="zone">Zone:</label>
-            <select id="zone" name="zone">
-               <option value="north">North</option>
-               <option value="south">South</option>
-               <option value="east">East</option>
-               <option value="west">West</option>
-               <option value="central">Central</option>
-           </select><br>
+    <label for="organization_id">Organization ID:</label>
+    <input type="text" id="organization_id" name="organization_id"><br>
 
+    <label for="total_distance">Total Distance:</label>
+    <input type="number" id="total_distance" name="total_distance" min="0" required><br>
 
-        <label for="organization_id">Organization ID:</label>
-        <input type="text" id="organization_id" name="organization_id"><br>
+    <label for="item_type">Item Type:</label>
+    <select id="item_type" name="item_type" onchange="setKmPrice()">
+        <option value="perishable">Perishable</option>
+        <option value="non_perishable">Non-Perishable</option>
+    </select><br>
 
-        <label for="total_distance">Total Distance:</label>
-        <input type="number" id="total_distance" name="total_distance" min="0" required><br>
+    <label for="base_distance_in_km">Base Distance (km):</label>
+    <input type="number" id="base_distance_in_km" name="base_distance_in_km" min="5" required><br>
 
-        <label for="item_type">Item Type:</label>
-        <select id="item_type" name="item_type" onchange="setKmPrice()">
-            <option value="perishable">Perishable</option>
-            <option value="non_perishable">Non-Perishable</option>
-        </select><br>
+    <label for="km_price">Price per km (EUR):</label>
+    <span id="km_price"></span><br>
 
-        <label for="base_distance_in_km">Base Distance (km):</label>
-        <input type="number" id="fix_price" name="fix_price" min="5" value="10" required><br>
-         <p id="fixPriceError" style="color: red; display: none;">Fixed price must be at least 5 EUR.</p>
-        
-        <label for="km_price">Price per km (EUR):</label>
-        <span id="km_price"></span><br>
+    <label for="fix_price">Fixed Price (EUR):</label>
+    <input type="number" id="fix_price" name="fix_price" min="0" value="10" required><br>
+    <p id="fixPriceError" style="color: red; display: none;">Fixed price must be at least 5 EUR.</p>
 
-        <label for="fix_price">Fixed Price (EUR):</label>
-        <input type="number" id="fix_price" name="fix_price" min="0" value="10" required><br>
+    <button type="button" onclick="calculatePrice()">Calculate</button>
+</form>
 
-        <button type="button" onclick="calculatePrice()">Calculate</button>
-    </form>
+ 
 
     <p id="totalPrice"></p>
 
