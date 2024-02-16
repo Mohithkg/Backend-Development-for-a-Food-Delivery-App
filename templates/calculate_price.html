@@ -10,8 +10,15 @@
 
     <form id="priceCalculationForm">
         {% csrf_token %}
-        <label for="zone">Zone:</label>
-        <input type="text" id="zone" name="zone"><br>
+         <label for="zone">Zone:</label>
+            <select id="zone" name="zone">
+               <option value="north">North</option>
+               <option value="south">South</option>
+               <option value="east">East</option>
+               <option value="west">West</option>
+               <option value="central">Central</option>
+           </select><br>
+
 
         <label for="organization_id">Organization ID:</label>
         <input type="text" id="organization_id" name="organization_id"><br>
