@@ -80,7 +80,7 @@ DATABASES = {
         'NAME': 'food_delivery_backend',
         'USER': 'postgres_food',
         'PASSWORD': 'L7MvAHZO763EPUFVwSj8Cfohs3JWYvML',
-        'HOST': '0.0.0.0',
+        'HOST': 'dpg-cn7hb7ect0pc738umdt0-a',
         'PORT': '5432',
     }
 }
