@@ -78,10 +78,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'food_delivery_backend',
-        'USER': 'postgres',
-        'PASSWORD': 'Mohith@56',
-        'HOST': '0.0.0.0',
-        'PORT': '10000',
+        'USER': 'postgres_food',
+        'PASSWORD': 'L7MvAHZO763EPUFVwSj8Cfohs3JWYvML',
+        'HOST': 'dpg-cn7hb7ect0pc738umdt0-a',
+        'PORT': '5432',
     }
 }
 
