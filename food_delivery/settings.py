@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'food_delivery.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.parse("postgres://postgres_food:L7MvAHZO763EPUFVwSj8Cfohs3JWYvML@dpg-cn7hb7ect0pc738umdt0-a.singapore-postgres.render.com/food_delivery_backend")
+    'default': dj_database_url.parse("postgres://postgres_food:L7MvAHZO763EPUFVwSj8Cfohs3JWYvML@dpg-cn7hb7ect0pc738umdt0-a/food_delivery_backend")
 }
 
 
